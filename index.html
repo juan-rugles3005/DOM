@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Lista de Tareas</title>
+<style>
+  :root {
+    --bg: #f4f1ea;
+    --panel: #ffffff;
+    --accent: #6d5acd;
+    --accent-light: #ece8fb;
+    --text: #2b2b33;
+    --text-dim: #7a7a85;
+    --danger: #e5484d;
+    --low: #6db97a;
+    --medium: #e0a83e;
+    --high: #e5484d;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; min-height: 100vh; background: var(--bg);
+    font-family: 'Segoe UI', system-ui, sans-serif; color: var(--text);
+    display: flex; justify-content: center; padding: 48px 20px;
+  }
+  .app { width: 100%; max-width: 520px; }
+  h1 { font-size: 1.7rem; margin-bottom: 4px; }
+  .subtitle { color: var(--text-dim); font-size: 0.9rem; margin-bottom: 24px; }
+  .input-row { display: flex; gap: 8px; margin-bottom: 12px; }
+  #taskInput { flex: 1; padding: 12px 14px; border-radius: 10px; border: 1px solid #ddd6c4; background: var(--panel); font-size: 1rem; outline: none; }
+  #taskInput:focus { border-color: var(--accent); }
+  #prioritySelect { padding: 12px; border-radius: 10px; border: 1px solid #ddd6c4; background: var(--panel); font-size: 0.9rem; }
+  #addBtn { padding: 12px 18px; border: none; border-radius: 10px; background: var(--accent); color: #fff; font-weight: 600; cursor: pointer; }
+  #addBtn:hover { filter: brightness(1.08); }
+  .filters { display: flex; gap: 8px; margin-bottom: 16px; }
+  .filter-btn { padding: 6px 14px; border-radius: 999px; border: 1px solid #ddd6c4; background: var(--panel); color: var(--text-dim); font-size: 0.85rem; cursor: pointer; }
+  .filter-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+  #counter { color: var(--text-dim); font-size: 0.9rem; margin-bottom: 12px; }
+  #taskList { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px; }
+  .task-item { display: flex; align-items: center; gap: 10px; background: var(--panel); padding: 12px 14px; border-radius: 10px; border-left: 4px solid var(--medium); box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
+  .task-item.low { border-left-color: var(--low); }
+  .task-item.medium { border-left-color: var(--medium); }
+  .task-item.high { border-left-color: var(--high); }
+  .task-text { flex: 1; cursor: pointer; }
+  .task-item.completed .task-text { text-decoration: line-through; color: var(--text-dim); }
+  .priority-badge { font-size: 0.7rem; padding: 2px 8px; border-radius: 999px; background: var(--accent-light); color: var(--accent); font-weight: 600; text-transform: uppercase; }
+  .delete-btn { background: transparent; border: none; color: var(--danger); font-size: 1.1rem; cursor: pointer; line-height: 1; padding: 4px 8px; border-radius: 6px; }
+  .delete-btn:hover { background: rgba(229, 72, 77, 0.12); }
+  .empty-msg { color: var(--text-dim); text-align: center; padding: 24px; font-style: italic; }
+</style>
+</head>
+<body>
+
+<div class="app">
+  <h1>📝 Lista de Tareas</h1>
+  
+  
+  <div class="input-row">
+    <input type="text" id="taskInput" placeholder="Escribe una nueva tarea...">
+    <select id="prioritySelect">
+      <option value="low">Baja</option>
+      <option value="medium" selected>Media</option>
+      <option value="high">Alta</option>
+    </select>
+    <button id="addBtn">Agregar</button>
+  </div>
+
+  <div class="filters">
+    <button class="filter-btn active" data-filter="all">Todas</button>
+    <button class="filter-btn" data-filter="pending">Pendientes</button>
+    <button class="filter-btn" data-filter="completed">Completadas</button>
+  </div>
+
+  <p id="counter">0 tareas pendientes</p>
+
+  <ul id="taskList"></ul>
+</div>
+
+<script>
+  const taskInput = document.getElementById('taskInput');
+  const prioritySelect = document.getElementById('prioritySelect');
+  const addBtn = document.getElementById('addBtn');
+  const taskList = document.getElementById('taskList');
+  const counter = document.getElementById('counter');
+  const filterButtons = document.querySelectorAll('.filter-btn');
+
+  let tasks = [];
+  let currentFilter = 'all';
+
+  const priorityLabels = { low: 'Baja', medium: 'Media', high: 'Alta' };
+
+  function getFilteredTasks() {
+    if (currentFilter === 'pending') return tasks.filter(t => !t.completed);
+    if (currentFilter === 'completed') return tasks.filter(t => t.completed);
+    return tasks;
+  }
+
+  function renderTasks() {
+    taskList.innerHTML = '';
+    const visibleTasks = getFilteredTasks();
+
+    if (visibleTasks.length === 0) {
+      const emptyMsg = document.createElement('li');
+      emptyMsg.className = 'empty-msg';
+      emptyMsg.textContent = 'No hay tareas para mostrar aquí.';
+      taskList.appendChild(emptyMsg);
+    }
+
+    visibleTasks.forEach(function (task) {
+      const li = document.createElement('li');
+      li.className = 'task-item ' + task.priority + (task.completed ? ' completed' : '');
+
+      const span = document.createElement('span');
+      span.className = 'task-text';
+      span.textContent = task.text;
+      span.addEventListener('click', function () {
+        task.completed = !task.completed;
+        renderTasks();
+      });
+
+      const badge = document.createElement('span');
+      badge.className = 'priority-badge';
+      badge.textContent = priorityLabels[task.priority];
+
+      const deleteBtn = document.createElement('button');
+      deleteBtn.className = 'delete-btn';
+      deleteBtn.textContent = '✕';
+      deleteBtn.addEventListener('click', function () {
+        tasks = tasks.filter(function (t) { return t.id !== task.id; });
+        renderTasks();
+      });
+
+      li.appendChild(span);
+      li.appendChild(badge);
+      li.appendChild(deleteBtn);
+      taskList.appendChild(li);
+    });
+
+    const pending = tasks.filter(function (t) { return !t.completed; }).length;
+    counter.textContent = pending + (pending === 1 ? ' tarea pendiente' : ' tareas pendientes');
+  }
+
+  function addTask() {
+    const text = taskInput.value.trim();
+    if (text === '') return;
+
+    tasks.push({
+      id: Date.now(),
+      text: text,
+      completed: false,
+      priority: prioritySelect.value
+    });
+
+    taskInput.value = '';
+    taskInput.focus();
+    renderTasks();
+  }
+
+  addBtn.addEventListener('click', addTask);
+  taskInput.addEventListener('keydown', function (event) {
+    if (event.key === 'Enter') addTask();
+  });
+
+  filterButtons.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterButtons.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      currentFilter = btn.dataset.filter;
+      renderTasks();
+    });
+  });
+
+  renderTasks();
+</script>
+
+</body>
+</html>
