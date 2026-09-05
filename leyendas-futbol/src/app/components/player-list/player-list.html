@@ -1,0 +1,42 @@
+<div class="container">
+  <h1>Leyendas del Fútbol</h1>
+
+  @if (loading) {
+    <div class="state-indicator loading">Cargando jugadores...</div>
+  }
+
+  @if (errorMessage) {
+    <div class="state-indicator error">{{ errorMessage }}</div>
+  }
+
+  @if (!loading && !errorMessage) {
+    <div class="grid">
+      @for (player of players; track player.idPlayer) {
+        <div
+          class="card"
+          [class.blocked]="isBlocked(player.idPlayer)"
+          (click)="toggleBlock(player.idPlayer)"
+        >
+          @if (isBlocked(player.idPlayer)) {
+            <div class="block-overlay">✕</div>
+          }
+          <img
+            [src]="player.strThumb"
+            [alt]="player.strPlayer"
+            loading="lazy"
+            (error)="$event.target.src='https://cdn-icons-png.flaticon.com/512/149/149071.png'"
+          />
+          <div class="card-body">
+            <h2>{{ player.strPlayer }}</h2>
+            <p class="label">Nacionalidad</p>
+            <p class="value">{{ player.strNationality }}</p>
+            <p class="label">Equipo</p>
+            <p class="value">{{ player.strTeam }}</p>
+            <p class="label">Posición</p>
+            <p class="value">{{ translatePosition(player.strPosition) }}</p>
+          </div>
+        </div>
+      }
+    </div>
+  }
+</div>
