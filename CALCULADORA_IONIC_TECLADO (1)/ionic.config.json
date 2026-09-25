@@ -1,0 +1,7 @@
+{
+  "name": "gorin-bross",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

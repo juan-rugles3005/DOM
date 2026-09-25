@@ -1,0 +1,47 @@
+<ion-content class="fondo" [fullscreen]="true">
+  <div class="calculadora">
+    <div class="pantalla">
+      <div class="pantalla-valor">{{ pantalla }}</div>
+    </div>
+
+    <div class="teclado">
+      <button class="tecla tecla-funcion" (click)="limpiar()">C</button>
+      <button class="tecla tecla-funcion" (click)="presionarCambiarSigno()">+/-</button>
+      <button class="tecla tecla-funcion" (click)="presionarPorcentaje()">%</button>
+      <button class="tecla tecla-operador" (click)="presionarOperador('/')">÷</button>
+
+      <button class="tecla tecla-numero" (click)="presionarDigito('7')">7</button>
+      <button class="tecla tecla-numero" (click)="presionarDigito('8')">8</button>
+      <button class="tecla tecla-numero" (click)="presionarDigito('9')">9</button>
+      <button class="tecla tecla-operador" (click)="presionarOperador('*')">×</button>
+
+      <button class="tecla tecla-numero" (click)="presionarDigito('4')">4</button>
+      <button class="tecla tecla-numero" (click)="presionarDigito('5')">5</button>
+      <button class="tecla tecla-numero" (click)="presionarDigito('6')">6</button>
+      <button class="tecla tecla-operador" (click)="presionarOperador('-')">−</button>
+
+      <button class="tecla tecla-numero" (click)="presionarDigito('1')">1</button>
+      <button class="tecla tecla-numero" (click)="presionarDigito('2')">2</button>
+      <button class="tecla tecla-numero" (click)="presionarDigito('3')">3</button>
+      <button class="tecla tecla-operador" (click)="presionarOperador('+')">+</button>
+
+      <button class="tecla tecla-numero tecla-cero" (click)="presionarDigito('0')">0</button>
+      <button class="tecla tecla-numero" (click)="presionarPunto()">.</button>
+      <button class="tecla tecla-igual" (click)="presionarIgual()">=</button>
+    </div>
+
+    @if (historial.length > 0) {
+      <div class="historial">
+        <div class="historial-encabezado">
+          <span>Historial</span>
+          <button class="historial-borrar" (click)="borrarHistorial()">Borrar</button>
+        </div>
+        <div class="historial-lista">
+          @for (item of historial; track $index) {
+            <div class="historial-item">{{ item }}</div>
+          }
+        </div>
+      </div>
+    }
+  </div>
+</ion-content>

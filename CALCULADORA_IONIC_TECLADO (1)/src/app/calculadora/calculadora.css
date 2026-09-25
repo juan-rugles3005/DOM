@@ -1,0 +1,132 @@
+.fondo {
+  --background: #0d0d0d;
+}
+
+.calculadora {
+  width: 100%;
+  max-width: 360px;
+  margin: 0 auto;
+  padding: 24px 16px;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.pantalla {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  min-height: 100px;
+  padding: 10px 12px 20px;
+}
+
+.pantalla-valor {
+  color: #ffffff;
+  font-size: 56px;
+  font-weight: 300;
+  line-height: 1;
+  word-break: break-all;
+  text-align: right;
+}
+
+.teclado {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.tecla {
+  border: none;
+  border-radius: 50%;
+  aspect-ratio: 1 / 1;
+  font-size: 26px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: filter 0.15s ease, transform 0.05s ease;
+}
+
+.tecla:active {
+  transform: scale(0.94);
+  filter: brightness(1.25);
+}
+
+.tecla-numero {
+  background: #333333;
+  color: #ffffff;
+}
+
+.tecla-funcion {
+  background: #a5a5a5;
+  color: #1c1c1e;
+}
+
+.tecla-operador {
+  background: #ff9f0a;
+  color: #ffffff;
+  font-size: 30px;
+}
+
+.tecla-igual {
+  background: #ff9f0a;
+  color: #ffffff;
+  font-size: 30px;
+  border-radius: 50%;
+  aspect-ratio: 1 / 1;
+}
+
+.tecla-cero {
+  grid-column: span 2;
+  aspect-ratio: auto;
+  border-radius: 40px;
+  text-align: left;
+  padding-left: 28px;
+}
+
+.historial {
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid #333333;
+  max-height: 160px;
+  overflow-y: auto;
+}
+
+.historial-encabezado {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #a5a5a5;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 8px;
+}
+
+.historial-borrar {
+  background: none;
+  border: none;
+  color: #ff9f0a;
+  font-size: 13px;
+  cursor: pointer;
+  padding: 0;
+}
+
+.historial-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.historial-item {
+  color: #dcdcdc;
+  font-size: 14px;
+  text-align: right;
+}
+
+@media (max-width: 380px) {
+  .pantalla-valor {
+    font-size: 44px;
+  }
+  .tecla {
+    font-size: 20px;
+  }
+}
