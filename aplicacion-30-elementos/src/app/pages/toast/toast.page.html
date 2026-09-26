@@ -1,0 +1,32 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="tertiary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/inicio" text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title>Toast</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="cabecera">
+    <div class="badge-icono">
+      <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
+    </div>
+    <div class="cabecera-texto">
+      <ion-chip color="tertiary" outline="true">ion-toast</ion-chip>
+    </div>
+  </div>
+
+  <div class="ion-padding">
+    <div class="bloque-info">
+      <h3>¿Para qué sirve?</h3>
+      <p>Muestra un mensaje breve y temporal en la pantalla, como la confirmación de que algo se guardó.</p>
+    </div>
+
+    <h3 class="titulo-demo">Ejemplo en vivo</h3>
+    <div class="caja-demo">
+      <ion-button id="abrir-toast">Mostrar toast</ion-button>
+    <ion-toast trigger="abrir-toast" message="Este es un toast de ejemplo." [duration]="2000"></ion-toast>
+    </div>
+  </div>
+</ion-content>

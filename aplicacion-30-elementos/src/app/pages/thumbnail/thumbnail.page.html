@@ -1,0 +1,33 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="tertiary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/inicio" text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title>Miniatura</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="cabecera">
+    <div class="badge-icono">
+      <ion-icon name="image-outline"></ion-icon>
+    </div>
+    <div class="cabecera-texto">
+      <ion-chip color="tertiary" outline="true">ion-thumbnail</ion-chip>
+    </div>
+  </div>
+
+  <div class="ion-padding">
+    <div class="bloque-info">
+      <h3>¿Para qué sirve?</h3>
+      <p>Muestra una imagen pequeña en miniatura, útil para previsualizar fotos o productos.</p>
+    </div>
+
+    <h3 class="titulo-demo">Ejemplo en vivo</h3>
+    <div class="caja-demo">
+      <ion-thumbnail>
+      <img alt="Miniatura de ejemplo" src="https://ionicframework.com/docs/img/demos/thumbnail.svg" />
+    </ion-thumbnail>
+    </div>
+  </div>
+</ion-content>

@@ -1,0 +1,22 @@
+.tarjeta-componente {
+  text-align: center;
+  margin: 0;
+  height: 100%;
+  transition: transform 0.15s ease;
+}
+
+.tarjeta-componente:hover {
+  transform: translateY(-3px);
+}
+
+.tarjeta-componente ion-icon {
+  font-size: 36px;
+  color: var(--ion-color-tertiary);
+  margin-bottom: 8px;
+}
+
+.tarjeta-componente ion-label {
+  display: block;
+  font-weight: 600;
+  font-size: 14px;
+}

@@ -1,0 +1,36 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="tertiary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/inicio" text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title>Tarjeta</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="cabecera">
+    <div class="badge-icono">
+      <ion-icon name="albums-outline"></ion-icon>
+    </div>
+    <div class="cabecera-texto">
+      <ion-chip color="tertiary" outline="true">ion-card</ion-chip>
+    </div>
+  </div>
+
+  <div class="ion-padding">
+    <div class="bloque-info">
+      <h3>¿Para qué sirve?</h3>
+      <p>Agrupa información relacionada dentro de un contenedor visual, como una tarjeta de producto o de noticia.</p>
+    </div>
+
+    <h3 class="titulo-demo">Ejemplo en vivo</h3>
+    <div class="caja-demo">
+      <ion-card>
+      <ion-card-header>
+        <ion-card-title>Título de la tarjeta</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>Contenido de ejemplo dentro de una tarjeta.</ion-card-content>
+    </ion-card>
+    </div>
+  </div>
+</ion-content>

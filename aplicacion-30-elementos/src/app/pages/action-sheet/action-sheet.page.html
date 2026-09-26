@@ -1,0 +1,32 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="tertiary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/inicio" text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title>Hoja de acciones</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="cabecera">
+    <div class="badge-icono">
+      <ion-icon name="menu-outline"></ion-icon>
+    </div>
+    <div class="cabecera-texto">
+      <ion-chip color="tertiary" outline="true">ion-action-sheet</ion-chip>
+    </div>
+  </div>
+
+  <div class="ion-padding">
+    <div class="bloque-info">
+      <h3>¿Para qué sirve?</h3>
+      <p>Muestra un menú de opciones que se desliza desde abajo para que el usuario elija una acción.</p>
+    </div>
+
+    <h3 class="titulo-demo">Ejemplo en vivo</h3>
+    <div class="caja-demo">
+      <ion-button id="abrir-action-sheet">Mostrar opciones</ion-button>
+    <ion-action-sheet trigger="abrir-action-sheet" header="Elige una opción" [buttons]="['Editar', 'Eliminar', 'Cancelar']"></ion-action-sheet>
+    </div>
+  </div>
+</ion-content>

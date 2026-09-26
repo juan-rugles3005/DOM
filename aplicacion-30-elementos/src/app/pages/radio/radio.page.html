@@ -1,0 +1,38 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="tertiary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/inicio" text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title>Botón de radio</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="cabecera">
+    <div class="badge-icono">
+      <ion-icon name="ellipse-outline"></ion-icon>
+    </div>
+    <div class="cabecera-texto">
+      <ion-chip color="tertiary" outline="true">ion-radio</ion-chip>
+    </div>
+  </div>
+
+  <div class="ion-padding">
+    <div class="bloque-info">
+      <h3>¿Para qué sirve?</h3>
+      <p>Permite elegir una sola opción entre varias posibles, como el método de pago o el tipo de envío.</p>
+    </div>
+
+    <h3 class="titulo-demo">Ejemplo en vivo</h3>
+    <div class="caja-demo">
+      <ion-radio-group value="opcion1">
+      <ion-item>
+        <ion-radio value="opcion1">Opción 1</ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-radio value="opcion2">Opción 2</ion-radio>
+      </ion-item>
+    </ion-radio-group>
+    </div>
+  </div>
+</ion-content>

@@ -1,0 +1,70 @@
+.cabecera {
+  background: linear-gradient(135deg, var(--ion-color-tertiary), var(--ion-color-tertiary-shade));
+  padding: 32px 20px 24px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.badge-icono {
+  width: 64px;
+  height: 64px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+
+.badge-icono ion-icon {
+  font-size: 32px;
+  color: white;
+}
+
+.cabecera-texto ion-chip {
+  --background: rgba(255, 255, 255, 0.15);
+  color: white;
+  font-family: monospace;
+}
+
+.bloque-info {
+  background: var(--ion-color-light);
+  border-left: 4px solid var(--ion-color-tertiary);
+  border-radius: 8px;
+  padding: 16px;
+  margin: 20px 0;
+}
+
+.bloque-info h3 {
+  margin-top: 0;
+  color: var(--ion-color-tertiary-shade);
+}
+
+.titulo-demo {
+  margin-top: 8px;
+}
+
+.caja-demo {
+  border: 2px dashed var(--ion-color-medium);
+  border-radius: 12px;
+  padding: 20px;
+  margin-top: 12px;
+}
+
+.col-demo {
+  text-align: center;
+  padding: 20px 0;
+  border-radius: 8px;
+  color: white;
+  font-weight: 600;
+}
+
+.col-a { background: #7044ff; }
+.col-b { background: #ff6b35; }
+.col-c { background: #12c2a1; }
+
+.contenedor-fab {
+  position: relative;
+  height: 120px;
+}
